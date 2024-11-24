@@ -34,8 +34,8 @@ const router = createBrowserRouter(
         <Route path="/saf/step2" element={<Step2 />} />
         <Route path="/saf/step3" element={<Step3 />} />
       </Route>
-      <Route path="signin" element={<Signin />} />
-      <
+      <Route path="/signin" element={<Signin />} />
+     
     </Route>
   )
 );
