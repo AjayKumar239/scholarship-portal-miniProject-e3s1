@@ -9,4 +9,3 @@ Currently, two official plugins are available:
 
 
 
-- [Rakesh Boyiri](https://github.com/rakeshboyiri)
