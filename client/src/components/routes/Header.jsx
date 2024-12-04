@@ -1,6 +1,13 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { User, LogOut } from 'lucide-react';
+import React from "react";
+import { Link } from "react-router-dom";
+import { User, LogOut } from "lucide-react";
+
+
+import AboutUs from "../pages/AboutUs.jsx";
+import Services from "../pages/Services.jsx";
+import ContactUs from "../pages/ContactUs.jsx";
+
+
 
 const Header = () => {
   return (
@@ -16,8 +23,8 @@ const Header = () => {
 
           {/* Navigation Links */}
           <nav className="hidden md:flex space-x-6">
-            <Link to="/" className="hover:text-gray-300 transition duration-200">Home</Link>
-            <Link to="/about" className="hover:text-gray-300 transition duration-200">About</Link>
+            <Link href={"/"} className="hover:text-gray-300 transition duration-200">Home</Link>
+            <Link href={"/AboutUs"} className="hover:text-gray-300 transition duration-200">About</Link>
             <Link to="/services" className="hover:text-gray-300 transition duration-200">Services</Link>
             <Link to="/contact" className="hover:text-gray-300 transition duration-200">Contact</Link>
           </nav>
