@@ -25,7 +25,8 @@ function OfficerRegisterPage() {
         body: JSON.stringify(formData),
       });
   
-      const data = await res.json();
+      // const data = await res.json();
+      console.log(res);
   
       if (res.status !== 201) {
         setErrMsg(data.message || "An error occurred. Please try again.");
