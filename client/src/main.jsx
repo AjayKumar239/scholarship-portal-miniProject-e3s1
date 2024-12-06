@@ -28,6 +28,8 @@ import ContactUs from "./components/pages/ContactUs.jsx";
 import Services from "./components/pages/Services.jsx";
 
 import OfficerDashboardPage from "./components/officer/OfficerDashboardPage.jsx";
+import Eligibility from "./components/dashboard/Eligibility.jsx";
+import Profile from "./components/pages/Profile.jsx";
 import OfficerRegisterPage from "./components/officer/OfficerRegisterPage.jsx";
 import OfficerLoginPage from "./components/officer/OfficerLoginPage.jsx";
 
@@ -52,6 +54,8 @@ const router = createBrowserRouter(
       <Route path="/Services" element={<Services />} />
       <Route path="/test" element={<Test />} />
       <Route path="/officer/dashboard" element={<OfficerDashboardPage />} />
+      <Route path="/Eligibility" element={<Eligibility/>}/>
+      <Route path="/profile" element={<Profile/>}/>
       <Route path="/officer/register" element={<OfficerRegisterPage />} />
       <Route path="/officer/login" element={<OfficerLoginPage />} />
       <Route path="/institute/register" element={<InstitueRegisterPage />} />
