@@ -34,6 +34,8 @@ import OfficerRegisterPage from "./components/officer/OfficerRegisterPage.jsx";
 import OfficerLoginPage from "./components/officer/OfficerLoginPage.jsx";
 
 import InstitueRegisterPage from "./components/institute/InstitueRegisterPage.jsx";
+import InstitueDashboard from "./components/institute/InstitueDashboard.jsx";
+import InstitueLoginPage from "./components/institute/InstitueLoginPage.jsx";
 
 
 
@@ -58,7 +60,11 @@ const router = createBrowserRouter(
       <Route path="/profile" element={<Profile/>}/>
       <Route path="/officer/register" element={<OfficerRegisterPage />} />
       <Route path="/officer/login" element={<OfficerLoginPage />} />
+
+
       <Route path="/institute/register" element={<InstitueRegisterPage />} />
+      <Route path="/institute/dashboard" element={<InstitueDashboard />} />
+      <Route path="/institute/login" element={<InstitueLoginPage />} />
 
 
     </Route>

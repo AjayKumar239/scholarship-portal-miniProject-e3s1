@@ -12,7 +12,6 @@
   import authRouter from "./routes/auth.route.js";
   import userRouter from "./routes/user.route.js";
   import officerRoutes from "./routes/officerRoutes.js";
-  import UserApplication from "./models/UserApplication.model.js";
 
   dotenv.config();
 
@@ -30,25 +29,6 @@
   app.use("/api/v1/officer", officerRoutes);
   // app.use("/api/institute", instituteRoutes);
 
-
-
-
-//for Officer
-
-// app.get("/api/officer/applications", (req, res) => {
-//   try {
-//     const applications = [
-//       { id: 1, studentName: "John Doe", status: "Pending" },
-//       { id: 2, studentName: "Jane Smith", status: "Approved" },
-//     ];
-//     res.status(200).json(applications); // Send JSON response
-//   } catch (error) {
-//     res.status(500).json({ message: "Internal server error" });
-//   }
-// });
-  
-  
-  
   // Error handler (should be placed last)
   app.use(errorHandler);
 
