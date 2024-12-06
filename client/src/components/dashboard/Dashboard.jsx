@@ -48,7 +48,7 @@ const Dashboard = () => {
           </Link>
           <Link
             className="flex items-center mt-2 py-2 px-4 text-gray-600 hover:bg-gray-200 hover:text-gray-700 transition-colors duration-200"
-            href="#"
+           to="/Eligibility"
           >
             <Settings className="mr-3" /> Eligibility
           </Link>
