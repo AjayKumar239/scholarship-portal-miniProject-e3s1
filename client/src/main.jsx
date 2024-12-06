@@ -16,6 +16,8 @@ import App from "./components/routes/App.jsx";
 import Home from "./components/pages/Home.jsx";
 import Signup from "./components/pages/Signup.jsx";
 import Dashboard from "./components/dashboard/Dashboard.jsx";
+import Test from "./components/dashboard/Test.jsx";
+
 import FreshFormFillup from "./components/pages/FreshFormFillup.jsx";
 import Signin from "./components/pages/Signin.jsx";
 import Step1 from "./components/Form/Step1.jsx";
@@ -24,6 +26,14 @@ import Step3 from "./components/Form/Step3.jsx";
 import AboutUs from "./components/pages/AboutUs.jsx";
 import ContactUs from "./components/pages/ContactUs.jsx";
 import Services from "./components/pages/Services.jsx";
+
+import OfficerDashboardPage from "./components/officer/OfficerDashboardPage.jsx";
+import OfficerRegisterPage from "./components/officer/OfficerRegisterPage.jsx";
+import OfficerLoginPage from "./components/officer/OfficerLoginPage.jsx";
+
+import InstitueRegisterPage from "./components/institute/InstitueRegisterPage.jsx";
+
+
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -40,6 +50,11 @@ const router = createBrowserRouter(
       <Route path="/AboutUs" element={<AboutUs />} />
       <Route path="/ContactUs" element={<ContactUs />} />
       <Route path="/Services" element={<Services />} />
+      <Route path="/test" element={<Test />} />
+      <Route path="/officer/dashboard" element={<OfficerDashboardPage />} />
+      <Route path="/officer/register" element={<OfficerRegisterPage />} />
+      <Route path="/officer/login" element={<OfficerLoginPage />} />
+      <Route path="/institute/register" element={<InstitueRegisterPage />} />
 
 
     </Route>

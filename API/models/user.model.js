@@ -2,7 +2,8 @@ import mongoose from "mongoose";
 const { Schema, model } = mongoose;
 import bcrypt from "bcryptjs";
 
-const userSchema = new Schema({
+const userSchema = new Schema(
+  {
   name: {
     type: String,
     required: [true, "This feild can't be empty"],

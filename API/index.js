@@ -1,44 +1,48 @@
-import express from "express";
-import dotenv from "dotenv";
-import cookieParser from "cookie-parser";
+  import express from "express";
+  import dotenv from "dotenv";
+  import cookieParser from "cookie-parser";
 
-//connection import
-import createConnection from "./DB/connect.js";
+  // Database connection
+  import createConnection from "./DB/connect.js";
 
-//import error-handeler
-import { errorHandler } from "./middleware/errorHandeler.js";
+  // Error handler middleware
+  import { errorHandler } from "./middleware/errorHandeler.js";
 
-import authRouter from "./routes/auth.route.js";
-import userRouter from "./routes/user.route.js"
+  // Routes imports
+  import authRouter from "./routes/auth.route.js";
+  import userRouter from "./routes/user.route.js";
+  import officerRoutes from "./routes/officerRoutes.js";
 
-dotenv.config();
+  dotenv.config();
 
-const app = express();
-const port = process.env.PORT || 3000;
+  const app = express();
+  const port = process.env.PORT || 3000;
 
-//for consume json data
-app.use(express.json());
-app.use(cookieParser());
+  // Middleware to parse JSON and cookies
+  app.use(express.json());
+  app.use(cookieParser());
 
-//define endpoints here
-app.use("/api/v1/auth", authRouter);
-app.use("/api/v1/user", userRouter);
+  // Define API routes
+  app.use("/api/v1/auth", authRouter);
+  app.use("/api/v1/user", userRouter);
+  // app.use("/api/officer", officerRoutes);
+  app.use("/api/v1/officer", officerRoutes);
+  // app.use("/api/institute", instituteRoutes);
 
-//should be placed at the bottom of index js
-app.use(errorHandler);
+  // Error handler (should be placed last)
+  app.use(errorHandler);
 
-//connection with the database
-//connection with the database
-createConnection("mongodb+srv://admin2:admin123@cluster0.y0uqy.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
-  .then(() => {
-    app.listen(port, () => {
-      console.log(`Example app listening on port ${port}`);
+  // Connect to MongoDB and start the server
+  createConnection(process.env.MONGO_URI || "mongodb+srv://admin2:admin123@cluster0.y0uqy.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
+    .then(() => {
+      app.listen(port, () => {
+        console.log(`Server running on port ${port}`);
+      });
+    })
+    .catch((error) => {
+      console.error(
+        "Failed to start the server due to MongoDB connection error:",
+        error
+      );
+      process.exit(1);
     });
-  })
-  .catch((error) => {
-    console.error(
-      "Failed to start the server due to MongoDB connection error:",
-      error
-    );
-    process.exit(1);
-  });
