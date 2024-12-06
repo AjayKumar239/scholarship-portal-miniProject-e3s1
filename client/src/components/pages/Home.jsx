@@ -87,13 +87,28 @@ const HomePage = () => {
           <h3 className="text-2xl font-semibold mb-4 text-black">Officer Login</h3>
           <p className="text-black mb-4">Access the officer's dashboard to review applications and manage scholarship details. Efficiently handle and oversee the scholarship process with ease.</p>
           <Link 
-            to="/officerLogin" 
+            to="/officer/login" 
             className="bg-yellow-200 text-black py-3 px-6 rounded-full text-lg font-semibold shadow-md hover:bg-yellow-300 transition ease-in-out duration-300"
           >
             Login
           </Link>
         </div>
       </div>
+      {/* Institute Login Card */}
+<div className="bg-white shadow-lg rounded-lg p-8 transform transition-transform hover:scale-105 relative border border-gray-200 overflow-hidden">
+  <div className="absolute inset-0 bg-blue-100 opacity-60 rounded-lg"></div>
+  <div className="relative z-10">
+    <h3 className="text-2xl font-semibold mb-4 text-black">Institute Login</h3>
+    <p className="text-black mb-4">Access the institute's dashboard to manage and verify student applications, ensuring a seamless scholarship process.</p>
+    <Link 
+      to="/institute/register" 
+      className="bg-blue-200 text-black py-3 px-6 rounded-full text-lg font-semibold shadow-md hover:bg-blue-300 transition ease-in-out duration-300"
+    >
+      Login
+    </Link>
+  </div>
+</div>
+
     </div>
   </div>
 </section>
