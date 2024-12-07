@@ -71,6 +71,7 @@ const router = createBrowserRouter(
 
 
       <Route path="/institute/register" element={<InstitueRegisterPage />} />
+      
       <Route path="/institute/dashboard" element={<InstitueDashboard />} />
       <Route path="/institute/login" element={<InstitueLoginPage />} />
       <Route path="/offered/" element={<EnhancedMTFRatesTable />} />
