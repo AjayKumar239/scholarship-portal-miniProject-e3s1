@@ -14,6 +14,8 @@
   import officerRoutes from "./routes/officerRoutes.js";
   import instituteRoutes from "./routes/instituteRoutes.js";
   import UserApplication from "./models/UserApplication.model.js";
+  // import Institute_APP from "./models/Institute_APP.js";
+  import Institute_APP from "./models/Institute_APP.js";
 
   dotenv.config();
 
@@ -28,7 +30,7 @@
   app.use("/api/v1/auth", authRouter);
   app.use("/api/v1/user", userRouter);
   // app.use("/api/officer", officerRoutes);
-  app.use("/api/v1/officer", officerRoutes);
+  app.use("/api/v1/officer", officerRoutes);  
   // app.use("/api/institute", instituteRoutes);
 
   app.use("/api/v1/institute", instituteRoutes);
@@ -71,6 +73,7 @@
     });
 
 
+    //show appplicaions for the officer
     app.get("/api/officer/applications", async (req, res) => {
       try {
         const applications = await UserApplication.find({}); // Fetch all documents from UserApplication
@@ -84,10 +87,12 @@
 
 
     
+
+
+
     app.post("/api/addToInstitute", async (req, res) => {
       try {
         const { id } = req.body; // Extract the application ID from the request body
-        console.log(id);
     
         if (!id) {
           return res.status(400).json({ message: "Application ID is required." });
@@ -95,10 +100,10 @@
     
         console.log("Received ID from frontend:", id);
     
-        // Optionally, find and update the application in the database
+        // Find and update the application in the database
         const application = await UserApplication.findByIdAndUpdate(
           id,
-          { setToInstitute: true }, // Update the field in the database
+          { status: "waiting_for_institute_reply" }, // Update the status field
           { new: true } // Return the updated document
         );
     
@@ -106,7 +111,49 @@
           return res.status(404).json({ message: "Application not found." });
         }
     
-        res.status(200).json({ message: "Application sent to institute successfully.", application });
+        // Log the updated application object
+        console.log("Updated Application:", application);
+    
+        // Extract required fields for Institute collection
+        const { phone, fatherName, motherName } = application;
+        let sid = application.sid;
+        let AppID = (application._id).toString();
+        let insId = application.insId;
+        // console.log(sid);
+
+
+        console.log("siddddddddddddddddddd: ",insId);
+        console.log("siddddddddddddddddddd: ",AppID);
+        console.log("siddddddddddddddddddd: ",sid);
+        console.log("siddddddddddddddddddd: ",phone);
+        console.log("siddddddddddddddddddd: ",fatherName);
+        console.log("siddddddddddddddddddd: ",motherName);
+    
+        if (!insId|| !AppID || !sid || !phone || !fatherName || !motherName) {
+          return res.status(400).json({
+            message: "Missing required fields in application for Institute record.",
+          });
+        }
+    
+        // Insert into Institute collection
+        const instituteRecord = new Institute_APP({
+          insId,
+          AppID,
+          sid,
+          phone,
+          fatherName,
+          motherName,
+        });
+    
+        await instituteRecord.save();
+    
+        console.log("Inserted into Institute collection:", instituteRecord);
+    
+        res.status(200).json({ 
+          message: "Application sent to institute successfully and recorded.", 
+          application,
+          instituteRecord,
+        });
       } catch (error) {
         console.error("Error in /api/addToInstitute:", error);
         res.status(500).json({ message: "Internal server error." });
