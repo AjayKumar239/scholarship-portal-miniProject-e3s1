@@ -142,7 +142,7 @@ export const loginOfficer = async (req, res, next) => {
   try {
     // Find user by email
     const validUser = await Officer.findOne({ email });
-    console.log(validUser);
+    // console.log(validUser);
 
     // If user is not found
     if (!validUser) {
