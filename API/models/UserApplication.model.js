@@ -58,30 +58,30 @@ import mongoose from "mongoose";
 const userApplicationSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: [true, "Name is required."],
+    required: [false, "Name is required."],
     trim: true,
   },
   phone: {
     type: String,
-    required: [true, "Phone number is required."],
+    required: [false, "Phone number is required."],
   },
   fatherName: {
     type: String,
-    required: [true, "Father's name is required."],
+    required: [false, "Father's name is required."],
     trim: true,
   },
   motherName: {
     type: String,
-    required: [true, "Mother's name is required."],
+    required: [false, "Mother's name is required."],
     trim: true,
   },
   parentPhone: {
     type: String,
-    required: [true, "Parent's phone number is required."],
+    required: [false, "Parent's phone number is required."],
   },
   parentAddress: {
     type: String,
-    required: [true, "Parent's address is required."],
+    required: [false, "Parent's address is required."],
     trim: true,
   },
   // profilePhoto: {
@@ -96,15 +96,15 @@ const userApplicationSchema = new mongoose.Schema({
     type: String,
     enum: ["not_sent_to_institute", "waiting_for_institute_reply", "accepted_from_institute","rejected_from_institute","officer_accepted","officer_rejected"],
     default: "not_sent_to_institute", // Default value if not provided
-    required: [true, "Application status is required."],
+    required: [false, "Application status is required."],
   },
   sid: {
     type: String,
-    required:true,
+    required:false,
   },
   insId: {
     type: String,
-    required:true,
+    required:false,
   },
   createdAt: {
     type: Date,

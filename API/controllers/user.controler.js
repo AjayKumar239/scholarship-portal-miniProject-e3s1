@@ -100,6 +100,7 @@ export const step1 = async (req, res, next) => {
   try {
     const newUserApplication = await UserApplication.create(req.body);
 
+    console.log(newUserApplication);
     res.status(StatusCodes.CREATED).json({
       message: "Step 1 form submitted successfully!",
       data: newUserApplication,
