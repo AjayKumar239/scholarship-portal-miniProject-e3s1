@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+//add two addtional to this input fields that Student id, institute id  in this  code not change any other import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 function Step1() {
   const {
@@ -13,9 +14,10 @@ function Step1() {
   const [loading, setLoading] = useState(false);
   const [errMsg, setErrMsg] = useState("");
 
+  // Make the onSubmit function async
   const onSubmit = async (data) => {
     setLoading(true);
-    setErrMsg("");
+    setErrMsg(""); // Clear any previous error message
 
     try {
       const res = await fetch(`/api/v1/user/step1`, {
@@ -26,6 +28,7 @@ function Step1() {
         body: JSON.stringify(data),
       });
 
+      // Check if the response status is not 2xx
       if (!res.ok) {
         const errorData = await res.json();
         setErrMsg(errorData.message || "Something went wrong");
@@ -73,11 +76,8 @@ function Step1() {
               <p className="text-red-600 text-sm mt-1">Name is required.</p>
             )}
           </div>
-
-          {/* Other Inputs Here */}
-
-          {/* Student ID Input */}
-          <div className="mb-6">
+           {/* Student ID Input */}
+           <div className="mb-6">
             <label
               className="block text-gray-700 text-sm font-medium mb-2"
               htmlFor="studentId"
@@ -87,7 +87,7 @@ function Step1() {
             <input
               type="text"
               id="sid"
-              {...register("studentId", { required: true })}
+              {...register("sid", { required: true })}
               className="shadow-sm appearance-none border border-gray-300 rounded w-full py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Enter Student ID"
             />
@@ -109,16 +109,149 @@ function Step1() {
             <input
               type="text"
               id="insId"
-              {...register("instituteId", { required: true })}
+              {...register("insId", { required: true })}
               className="shadow-sm appearance-none border border-gray-300 rounded w-full py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Enter Institute ID"
-            />
-            {errors.instituteId && (
+            /> {errors.instituteId && (
               <p className="text-red-600 text-sm mt-1">
                 Institute ID is required.
               </p>
             )}
           </div>
+
+          {/* Phone Input */}
+          <div className="mb-6">
+            <label
+              className="block text-gray-700 text-sm font-medium mb-2"
+              htmlFor="phone"
+            >
+              Phone Number
+            </label>
+            <input
+              type="tel"
+              id="phone"
+              {...register("phone", { required: true })}
+              className="shadow-sm appearance-none border border-gray-300 rounded w-full py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              placeholder="Phone Number"
+            />
+            {errors.phone && (
+              <p className="text-red-600 text-sm mt-1">
+                Phone number is required.
+              </p>
+            )}
+          </div>
+
+          {/* Parent Info Inputs */}
+          <div className="grid grid-cols-1 gap-6 mb-6 md:grid-cols-2">
+            {/* Father's Name Input */}
+            <div>
+              <label
+                className="block text-gray-700 text-sm font-medium mb-2"
+                htmlFor="fatherName"
+              >
+                Father's Name
+              </label>
+              <input
+                type="text"
+                id="fatherName"
+                {...register("fatherName", { required: true })}
+                className="shadow-sm appearance-none border border-gray-300 rounded w-full py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                placeholder="Enter Father's Name"
+              />
+              {errors.fatherName && (
+                <p className="text-red-600 text-sm mt-1">
+                  Father's name is required.
+                </p>
+              )}
+            </div>
+
+            {/* Mother's Name Input */}
+            <div>
+              <label
+                className="block text-gray-700 text-sm font-medium mb-2"
+                htmlFor="motherName"
+              >
+                Mother's Name
+              </label>
+              <input
+                type="text"
+                id="motherName"
+                {...register("motherName", { required: true })}
+                className="shadow-sm appearance-none border border-gray-300 rounded w-full py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                placeholder="Enter Mother's Name"
+              />
+              {errors.motherName && (
+                <p className="text-red-600 text-sm mt-1">
+                  Mother's name is required.
+                </p>
+              )}
+            </div>
+          </div>
+
+          {/* Parent's Phone Number Input */}
+          <div className="mb-6">
+            <label
+              className="block text-gray-700 text-sm font-medium mb-2"
+              htmlFor="parentPhone"
+            >
+              Parent's Phone Number
+            </label>
+            <input
+              type="tel"
+              id="parentPhone"
+              {...register("parentPhone", { required: true })}
+              className="shadow-sm appearance-none border border-gray-300 rounded w-full py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              placeholder="Parent's Phone Number"
+            />
+            {errors.parentPhone && (
+              <p className="text-red-600 text-sm mt-1">
+                Parent's phone number is required.
+              </p>
+            )}
+          </div>
+
+          {/* Parent's Address Input */}
+          <div className="mb-6">
+            <label
+              className="block text-gray-700 text-sm font-medium mb-2"
+              htmlFor="parentAddress"
+            >
+              Parent's Address
+            </label>
+            <textarea
+              id="parentAddress"
+              {...register("parentAddress", { required: true })}
+              rows="3"
+              className="shadow-sm appearance-none border border-gray-300 rounded w-full py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              placeholder="Enter Parent's Address"
+            ></textarea>
+            {errors.parentAddress && (
+              <p className="text-red-600 text-sm mt-1">
+                Parent's address is required.
+              </p>
+            )}
+          </div>
+
+          {/* Profile Photo Input */}
+          {/* <div className="mb-6">
+            <label
+              className="block text-gray-700 text-sm font-medium mb-2"
+              htmlFor="profilePhoto"
+            >
+              Profile Photo Upload
+            </label>
+            <input
+              type="file"
+              id="profilePhoto"
+              {...register("profilePhoto", { required: true })}
+              className="shadow-sm appearance-none border border-gray-300 rounded w-full py-3 px-4 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+            {errors.profilePhoto && (
+              <p className="text-red-600 text-sm mt-1">
+                Profile photo upload is required.
+              </p>
+            )}
+          </div> */}
 
           {/* Additional Comments Input */}
           <div className="mb-6">
@@ -154,3 +287,5 @@ function Step1() {
 }
 
 export default Step1;
+
+//this is step1

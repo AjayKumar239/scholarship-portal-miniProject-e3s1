@@ -3,9 +3,7 @@ import { Link } from "react-router-dom";
 import { User, LogOut } from "lucide-react";
 
 
-import AboutUs from "../pages/AboutUs.jsx";
-import Services from "../pages/Services.jsx";
-import ContactUs from "../pages/ContactUs.jsx";
+
 
 
 
