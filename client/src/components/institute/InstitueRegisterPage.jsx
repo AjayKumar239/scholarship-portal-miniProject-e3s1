@@ -117,7 +117,7 @@ function InstitueRegisterPage() {
         </form>
         <p className="text-center text-gray-600 mt-4">
           Already have an account?{" "}
-          <Link to="/officer/login" className="text-blue-500 hover:underline">
+          <Link to="/institute/login" className="text-blue-500 hover:underline">
             Sign in
           </Link>
         </p>

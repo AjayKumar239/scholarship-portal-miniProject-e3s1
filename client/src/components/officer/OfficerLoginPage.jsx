@@ -28,6 +28,7 @@ function OfficerLoginPage() {
 
 
       const data = await res.json();
+      
       if(data.status){
         navigate("/officer/dashboard"); // Navigate to officer dashboard or homepage
       }

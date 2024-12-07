@@ -28,10 +28,22 @@ import ContactUs from "./components/pages/ContactUs.jsx";
 import Services from "./components/pages/Services.jsx";
 
 import OfficerDashboardPage from "./components/officer/OfficerDashboardPage.jsx";
+import Eligibility from "./components/dashboard/Eligibility.jsx";
+import Profile from "./components/pages/Profile.jsx";
 import OfficerRegisterPage from "./components/officer/OfficerRegisterPage.jsx";
 import OfficerLoginPage from "./components/officer/OfficerLoginPage.jsx";
 
 import InstitueRegisterPage from "./components/institute/InstitueRegisterPage.jsx";
+import InstitueDashboard from "./components/institute/InstitueDashboard.jsx";
+import InstitueLoginPage from "./components/institute/InstitueLoginPage.jsx";
+
+import EnhancedMTFRatesTable from "./components/banner/EnhancedMTFRatesTable.jsx";
+import CoursesEligible from "./components/banner/CoursesEligible.jsx";
+import CollegeList from "./components/banner/CollegeList.jsx";
+
+import HomeTimeLine from "./components/banner/HomeTimeLine.jsx";
+import HomeRejectionReasons from "./components/banner/HomeRejectionReasons.jsx";
+import ScholarshipFAQ from "./components/banner/ScholarshipFAQ.jsx";
 
 
 
@@ -52,9 +64,21 @@ const router = createBrowserRouter(
       <Route path="/Services" element={<Services />} />
       <Route path="/test" element={<Test />} />
       <Route path="/officer/dashboard" element={<OfficerDashboardPage />} />
+      <Route path="/Eligibility" element={<Eligibility/>}/>
+      <Route path="/profile" element={<Profile/>}/>
       <Route path="/officer/register" element={<OfficerRegisterPage />} />
       <Route path="/officer/login" element={<OfficerLoginPage />} />
+
+
       <Route path="/institute/register" element={<InstitueRegisterPage />} />
+      <Route path="/institute/dashboard" element={<InstitueDashboard />} />
+      <Route path="/institute/login" element={<InstitueLoginPage />} />
+      <Route path="/offered/" element={<EnhancedMTFRatesTable />} />
+      <Route path="/courses/" element={<CoursesEligible />} />
+      <Route path="/colleges/" element={<CollegeList />} />
+      <Route path="/timeline/" element={<HomeTimeLine />} />
+      <Route path="/rejections/" element={<HomeRejectionReasons />} />
+      <Route path="/faqs/" element={<ScholarshipFAQ />} />
 
 
     </Route>

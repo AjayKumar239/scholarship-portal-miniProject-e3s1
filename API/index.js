@@ -12,6 +12,7 @@
   import authRouter from "./routes/auth.route.js";
   import userRouter from "./routes/user.route.js";
   import officerRoutes from "./routes/officerRoutes.js";
+  import instituteRoutes from "./routes/instituteRoutes.js";
   import UserApplication from "./models/UserApplication.model.js";
   // import Institute_APP from "./models/Institute_APP.js";
   import Institute_APP from "./models/Institute_APP.js";
@@ -31,6 +32,8 @@
   // app.use("/api/officer", officerRoutes);
   app.use("/api/v1/officer", officerRoutes);  
   // app.use("/api/institute", instituteRoutes);
+
+  app.use("/api/v1/institute", instituteRoutes);
 
 
 
