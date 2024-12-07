@@ -2,6 +2,7 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import { LogOut, User } from 'lucide-react'
 import { Button } from "../ui/button"
+import MouseHoverPopover from './MouseHoverPopover'
 
 const navItems = [
   { name: 'Home', href: '/' },
@@ -26,7 +27,7 @@ export function Header() {
             whileTap={{ scale: 0.95 }}
           >
             <a href="/" className="flex items-center gap-2">
-              e-PMSSS
+              <MouseHoverPopover val={{initi:"e-PMSSS",final:"The Prime Minister's Special Scholarship Scheme (PMSSS)"}}> </MouseHoverPopover> 
             </a>
           </motion.div>
 
