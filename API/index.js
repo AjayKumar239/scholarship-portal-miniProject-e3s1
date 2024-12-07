@@ -159,4 +159,33 @@
         res.status(500).json({ message: "Internal server error." });
       }
     });
+
+
+// app.get('/api/institute/applications', async (req,res)=>{
+//   try {
+//     const applications = await Institute_APP.find({}); // Fetch all documents from UserApplication
+//     res.status(200).json(applications); // Send JSON response with data
+//   } catch (error) {
+//     console.error("Error fetching applications:", error);
+//     res.status(500).json({ message: "Internal server error" }); // Handle errors
+//   }
+// });
+
+app.get('/api/institute/applications', async (req, res) => {
+  try {
+    const status = req.query.status; // Optional filter for status
+    const filter = status ? { status } : {}; // Build filter condition
+
+    const applications = await Institute_APP.find(filter); // Fetch filtered applications
+    if (!applications.length) {
+      return res.status(404).json({ message: "No applications found." });
+    }
+
+    res.status(200).json(applications); // Send applications data
+  } catch (error) {
+    console.error("Error fetching applications:", error);
+    res.status(500).json({ message: "Internal server error" }); // Error response
+  }
+});
+
     
