@@ -198,6 +198,7 @@ app.post('/api/institute/applications/:id/accept', async (req, res) => {
     const application = await Institute_APP.findById(id);
     if (!application) {
       return res.status(404).json({ message: "Application not found in Institute_APP." });
+      console.log("Institute Accepected the application");
     }
 
     // Update the status of the related application in UserApplication
@@ -232,6 +233,7 @@ app.post('/api/institute/applications/:id/reject', async (req, res) => {
     // Update the status of the related application in UserApplication
     const { AppID } = application; // Retrieve the AppID from the application
     const user = await UserApplication.findByIdAndUpdate(AppID, { status: "rejected_from_institute" }, { new: true });
+    console.log("Institute Rejected the application");
 
     if (!user) {
       return res.status(404).json({ message: "Related user application not found." });
@@ -248,14 +250,19 @@ app.post('/api/institute/applications/:id/reject', async (req, res) => {
 });
 
 
-app.get("/api/officer/:id/accept",(req,res)=>{
-  let id = req.params;
-  let app = UserApplication.findByIdAndUpdate(id,{status:"officer_accepted"});
+app.get("/api/officer/:id/accept",async (req,res)=>{
+  const { id } = req.params;
+  // const application = await Institute_APP.findById(id);
+  // const { AppID } = application; 
+  const user = await UserApplication.findByIdAndUpdate(id, { status: "accepted_from_officer" }, { new: true });
+  console.log(id);
+  console.log("Officer accepted the application");
 });
 
-app.get("/api/officer/:id/reject",(req,res)=>{
-  let id = req.params;
-  let app = UserApplication.findByIdAndUpdate(id,{status:"officer_rejected"});
+app.get("/api/officer/:id/reject",async (req,res)=>{
+  const { id } = req.params;
+  const user = await UserApplication.findByIdAndUpdate(id, { status: "rejected_from_officer" }, { new: true });
+  console.log("Officer rejected the application");
   console.log(id);
 });
 
