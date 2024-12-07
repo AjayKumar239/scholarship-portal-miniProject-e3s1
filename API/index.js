@@ -188,4 +188,74 @@ app.get('/api/institute/applications', async (req, res) => {
   }
 });
 
-    
+
+app.post('/api/institute/applications/:id/accept', async (req, res) => {
+  try {
+    const { id } = req.params; // Extract the ID from request params
+    console.log("Received params for accept:", req.params);
+
+    // Check if the application exists in the Institute_APP collection
+    const application = await Institute_APP.findById(id);
+    if (!application) {
+      return res.status(404).json({ message: "Application not found in Institute_APP." });
+    }
+
+    // Update the status of the related application in UserApplication
+    const { AppID } = application; // Retrieve the AppID from the application
+    const user = await UserApplication.findByIdAndUpdate(AppID, { status: "accepted_from_institute" }, { new: true });
+
+    if (!user) {
+      return res.status(404).json({ message: "Related user application not found." });
+    }
+
+    console.log("Updated UserApplication:", user);
+
+    // Send success response
+    res.status(200).json({ message: "Application accepted by institute.", application, user });
+  } catch (error) {
+    console.error("Error accepting application:", error);
+    res.status(500).json({ message: "Internal server error." });
+  }
+});
+
+app.post('/api/institute/applications/:id/reject', async (req, res) => {
+  try {
+    const { id } = req.params; // Extract the ID from request params
+    console.log("Received params for reject:", req.params);
+
+    // Check if the application exists in the Institute_APP collection
+    const application = await Institute_APP.findById(id);
+    if (!application) {
+      return res.status(404).json({ message: "Application not found in Institute_APP." });
+    }
+
+    // Update the status of the related application in UserApplication
+    const { AppID } = application; // Retrieve the AppID from the application
+    const user = await UserApplication.findByIdAndUpdate(AppID, { status: "rejected_from_institute" }, { new: true });
+
+    if (!user) {
+      return res.status(404).json({ message: "Related user application not found." });
+    }
+
+    console.log("Updated UserApplication:", user);
+
+    // Send success response
+    res.status(200).json({ message: "Application rejected by institute.", application, user });
+  } catch (error) {
+    console.error("Error rejecting application:", error);
+    res.status(500).json({ message: "Internal server error." });
+  }
+});
+
+
+app.get("/api/officer/:id/accept",(req,res)=>{
+  let id = req.params;
+  let app = UserApplication.findByIdAndUpdate(id,{status:"officer_accepted"});
+});
+
+app.get("/api/officer/:id/reject",(req,res)=>{
+  let id = req.params;
+  let app = UserApplication.findByIdAndUpdate(id,{status:"officer_rejected"});
+  console.log(id);
+});
+

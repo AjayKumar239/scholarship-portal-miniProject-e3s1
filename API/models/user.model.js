@@ -35,10 +35,6 @@ const userSchema = new Schema(
     minLength: 6,
     trim: true,
   },
-  sid: {
-    type: String,
-    required:true,
-  }
 });
 
 //hashed password before saving it to the databased
