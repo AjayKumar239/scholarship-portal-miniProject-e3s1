@@ -58,14 +58,16 @@ const OfficerDashboardPage = () => {
     }
   };
 
-  const handleAccept = (id) => {
+  const handleAccept = async (id) => {
     console.log(`Accepting application ${id}.`);
     // Call backend API to accept application
+    await fetch(`/api/officer/${id}/accept`);
   };
 
-  const handleReject = (id) => {
+  const handleReject = async (id) => {
     console.log(`Rejecting application ${id}.`);
     // Call backend API to reject application
+    await fetch(`/api/officer/${id}/reject`);
   };
 
   if (loading) {

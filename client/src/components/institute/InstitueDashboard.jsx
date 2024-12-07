@@ -1,20 +1,26 @@
 import React, { useEffect, useState } from "react";
 
-const InstitueDashboard = () => {
+const InstituteDashboard = () => {
   const [applications, setApplications] = useState([]);
+  const [studentId, setStudentId] = useState(null);
 
   useEffect(() => {
     const fetchApplications = async () => {
       const token = localStorage.getItem("officer-token");
-      const response = await fetch("/api/institute/applications", {
-        // headers: { Authorization: `Bearer ${token}` }, 
-      });
+      try {
+        const response = await fetch("/api/institute/applications", {
+          headers: { Authorization: `Bearer ${token}` },
+        });
 
-      if (response.ok) {
-        const data = await response.json();
-        setApplications(data);
-      } else {
-        console.error("Failed to fetch applications.");
+        if (response.ok) {
+          const data = await response.json();
+          setApplications(data);
+          setStudentId(data.AppID);
+        } else {
+          console.error("Failed to fetch applications.");
+        }
+      } catch (error) {
+        console.error("Error fetching applications:", error);
       }
     };
 
@@ -26,11 +32,15 @@ const InstitueDashboard = () => {
       const token = localStorage.getItem("officer-token");
       const response = await fetch(`/api/institute/applications/${id}/accept`, {
         method: "POST",
-        headers: { Authorization: `Bearer ${token}` },
+        headers: { 
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json" 
+        },
+        body: JSON.stringify({ id }),
       });
 
       if (response.ok) {
-        setApplications((prev) => prev.filter((app) => app.id !== id));
+        setApplications((prev) => prev.filter((app) => app._id !== id));
         alert("Application accepted successfully.");
       } else {
         alert("Failed to accept the application.");
@@ -45,11 +55,15 @@ const InstitueDashboard = () => {
       const token = localStorage.getItem("officer-token");
       const response = await fetch(`/api/institute/applications/${id}/reject`, {
         method: "POST",
-        headers: { Authorization: `Bearer ${token}` },
+        headers: { 
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json" 
+        },
+        body: JSON.stringify({ id }),
       });
 
       if (response.ok) {
-        setApplications((prev) => prev.filter((app) => app.id !== id));
+        setApplications((prev) => prev.filter((app) => app._id !== id));
         alert("Application rejected successfully.");
       } else {
         alert("Failed to reject the application.");
@@ -74,7 +88,7 @@ const InstitueDashboard = () => {
         </thead>
         <tbody>
           {applications.map((app) => (
-            <tr key={app.id}>
+            <tr key={app._id}>
               <td className="border border-gray-300 px-4 py-2">{app.AppID}</td>
               <td className="border border-gray-300 px-4 py-2">{app.sid}</td>
               <td className="border border-gray-300 px-4 py-2">{app.phone}</td>
@@ -82,13 +96,13 @@ const InstitueDashboard = () => {
               <td className="border border-gray-300 px-4 py-2">
                 <button
                   className="bg-green-500 text-white px-4 py-2 mr-2 rounded"
-                  onClick={() => handleAccept(app.id)}
+                  onClick={() => handleAccept(app._id)}
                 >
                   Accept
                 </button>
                 <button
                   className="bg-red-500 text-white px-4 py-2 rounded"
-                  onClick={() => handleReject(app.id)}
+                  onClick={() => handleReject(app._id)}
                 >
                   Reject
                 </button>
@@ -101,4 +115,4 @@ const InstitueDashboard = () => {
   );
 };
 
-export default InstitueDashboard;
+export default InstituteDashboard;

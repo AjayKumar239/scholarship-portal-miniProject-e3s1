@@ -94,7 +94,7 @@ const userApplicationSchema = new mongoose.Schema({
   },
   status: {
     type: String,
-    enum: ["not_sent_to_institute", "waiting_for_institute_reply", "accepted_from_institute","rejecred_from_institute"],
+    enum: ["not_sent_to_institute", "waiting_for_institute_reply", "accepted_from_institute","rejected_from_institute","officer_accepted","officer_rejected"],
     default: "not_sent_to_institute", // Default value if not provided
     required: [true, "Application status is required."],
   },
