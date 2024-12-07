@@ -100,19 +100,23 @@ const OfficerDashboardPage = () => {
                     className="bg-blue-500 text-white px-2 py-1 mr-2 rounded"
                     onClick={() => handleSendToInstitute(app)}
                   >
-                    Send to Institute
+                    {app.status === "not_sent_to_institute" ? "Send to Institute" : app.status === "waiting_for_institute_reply" ? "Pending at Institute" : app.status === "accepted_from_institute" ? "Verified" : app.status === "accepted_from_institute" ? "Rejected" : app.status === "accepted_from_officer" ? "Accepted" : "Rejected"}
                   </button>
                   <button
                     className="bg-green-500 text-white px-2 py-1 mr-2 rounded"
                     onClick={() => handleAccept(app._id)}
                   >
-                    Accept
+                   {app.status === "accepted_from_officer" ? "Accepted" : "Accept"}
                   </button>
                   <button
                     className="bg-red-500 text-white px-2 py-1 rounded"
-                    onClick={() => handleReject(app._id)}
+                    onClick={() => {handleReject(app._id)
+                      to="/officer/dashboard"
+
+
+                    }} 
                   >
-                    Reject
+                     {app.status === "rejected_from_officer" ? "Rejected" : "Reject"}
                   </button>
                 </td>
               </tr>
