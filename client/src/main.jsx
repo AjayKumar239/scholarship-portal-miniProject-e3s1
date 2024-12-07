@@ -37,6 +37,14 @@ import InstitueRegisterPage from "./components/institute/InstitueRegisterPage.js
 import InstitueDashboard from "./components/institute/InstitueDashboard.jsx";
 import InstitueLoginPage from "./components/institute/InstitueLoginPage.jsx";
 
+import EnhancedMTFRatesTable from "./components/banner/EnhancedMTFRatesTable.jsx";
+import CoursesEligible from "./components/banner/CoursesEligible.jsx";
+import CollegeList from "./components/banner/CollegeList.jsx";
+
+import HomeTimeLine from "./components/banner/HomeTimeLine.jsx";
+import HomeRejectionReasons from "./components/banner/HomeRejectionReasons.jsx";
+import ScholarshipFAQ from "./components/banner/ScholarshipFAQ.jsx";
+
 
 
 const router = createBrowserRouter(
@@ -65,6 +73,12 @@ const router = createBrowserRouter(
       <Route path="/institute/register" element={<InstitueRegisterPage />} />
       <Route path="/institute/dashboard" element={<InstitueDashboard />} />
       <Route path="/institute/login" element={<InstitueLoginPage />} />
+      <Route path="/offered/" element={<EnhancedMTFRatesTable />} />
+      <Route path="/courses/" element={<CoursesEligible />} />
+      <Route path="/colleges/" element={<CollegeList />} />
+      <Route path="/timeline/" element={<HomeTimeLine />} />
+      <Route path="/rejections/" element={<HomeRejectionReasons />} />
+      <Route path="/faqs/" element={<ScholarshipFAQ />} />
 
 
     </Route>
