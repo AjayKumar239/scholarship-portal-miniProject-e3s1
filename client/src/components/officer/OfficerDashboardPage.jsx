@@ -70,6 +70,10 @@ const OfficerDashboardPage = () => {
     await fetch(`/api/officer/${id}/reject`);
   };
 
+  function refreshPage(){ 
+    window.location.reload(); 
+}
+
   if (loading) {
     return <div>Loading applications...</div>;
   }
@@ -96,28 +100,126 @@ const OfficerDashboardPage = () => {
                 <td className="border border-gray-300 px-4 py-2">{app._id}</td>
                 <td className="border border-gray-300 px-4 py-2">{app.name}</td>
                 <td className="border border-gray-300 px-4 py-2">
-                  <button
+                  
+                  {/* <button
                     className="bg-blue-500 text-white px-2 py-1 mr-2 rounded"
                     onClick={() => handleSendToInstitute(app)}
                   >
                     {app.status === "not_sent_to_institute" ? "Send to Institute" : app.status === "waiting_for_institute_reply" ? "Pending at Institute" : app.status === "accepted_from_institute" ? "Verified" : app.status === "accepted_from_institute" ? "Rejected" : app.status === "accepted_from_officer" ? "Accepted" : "Rejected"}
-                  </button>
-                  <button
-                    className="bg-green-500 text-white px-2 py-1 mr-2 rounded"
-                    onClick={() => handleAccept(app._id)}
-                  >
-                   {app.status === "accepted_from_officer" ? "Accepted" : "Accept"}
-                  </button>
-                  <button
+                  </button> */}
+
+
+                  {app.status === "not_sent_to_institute" && (
+                    <button
+                      className="bg-blue-500 text-white px-2 py-1 mr-2 rounded"
+                      onClick={() => {handleSendToInstitute(app)
+                        refreshPage()
+
+                      }
+
+                        
+                      }
+                     
+                    
+                    >
+                      Send to Institute
+                    </button>
+                  )}
+                  {app.status === "waiting_for_institute_reply" && (
+                    <button
+                      className="bg-yellow-500 text-white px-2 py-1 mr-2 rounded" disabled
+                      onClick={() =>{ handleSendToInstitute(app)
+                        refreshPage()
+                      }}
+                    >
+                      Pending at Institute
+                    </button>
+                  )}
+                  {app.status === "accepted_from_institute" && (
+
+                    <div>
+                    <button
+                      className="bg-blue-500 text-white px-2 py-1 mr-2 rounded"
+                      onClick={() => {handleSendToInstitute(app)
+                        refreshPage()
+                      }} disabled
+                    >
+                      Verified Institute
+                    </button>
+
+                    <button
+                      className="bg-green-500 text-white px-2 py-1 mr-2 rounded"
+                      onClick={() => {handleAccept(app._id)
+                        refreshPage()
+                      }}
+                      >
+                        Accept
+                      </button>
+
+                      <button
                     className="bg-red-500 text-white px-2 py-1 rounded"
                     onClick={() => {handleReject(app._id)
-                      to="/officer/dashboard"
-
-
+                      refreshPage()
                     }} 
-                  >
-                     {app.status === "rejected_from_officer" ? "Rejected" : "Reject"}
+                  >    
+                    Reject                
                   </button>
+
+
+                    </div>
+
+                  )}
+                  {app.status === "rejected_from_institute" && (
+                    <div>
+                    <button
+                      className="bg-red-500 text-white px-2 py-1 mr-2 rounded"
+                      onClick={() =>{ handleSendToInstitute(app)
+                        refreshPage()
+                      }} disabled
+                    >
+                      Rejected by Institute
+                    </button>
+
+                      <button
+                      className="bg-green-500 text-white px-2 py-1 mr-2 rounded"
+                      onClick={() => {handleAccept(app._id)
+                        refreshPage()
+                      }}
+                      >
+                        Accept
+                      </button>
+
+                      <button
+                    className="bg-red-500 text-white px-2 py-1 rounded"
+                    onClick={() => {handleReject(app._id)
+                      refreshPage()
+                    }} 
+                  >    
+                    Reject                
+                  </button>
+                  </div>                    
+                  )}
+
+                  {app.status === "accepted_from_officer" && (
+                    <button
+                      className="bg-green-500 text-white px-2 py-1 mr-2 rounded"
+                      onClick={() => {handleAccept(app._id)
+                        refreshPage()
+                      }} disabled
+                    >
+                      Approved Succesfully
+                    </button>
+                  )}
+                  {app.status === "rejected_from_officer" && (
+                    <button
+                      className="bg-red-500 text-white px-2 py-1 rounded"
+                      onClick={() => {handleReject(app._id)
+                        refreshPage()
+                      }} disabled 
+                    >
+                      Rejected by the Officer
+                    </button>
+                  )}                 
                 </td>
               </tr>
             ))
