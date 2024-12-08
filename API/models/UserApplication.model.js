@@ -58,30 +58,30 @@ import mongoose from "mongoose";
 const userApplicationSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: [false, "Name is required."],
+    required: [true, "Name is required."],
     trim: true,
   },
   phone: {
     type: String,
-    required: [false, "Phone number is required."],
+    required: [true, "Phone number is required."],
   },
   fatherName: {
     type: String,
-    required: [false, "Father's name is required."],
+    required: [true, "Father's name is required."],
     trim: true,
   },
   motherName: {
     type: String,
-    required: [false, "Mother's name is required."],
+    required: [true, "Mother's name is required."],
     trim: true,
   },
   parentPhone: {
     type: String,
-    required: [false, "Parent's phone number is required."],
+    required: [true, "Parent's phone number is required."],
   },
   parentAddress: {
     type: String,
-    required: [false, "Parent's address is required."],
+    required: [true, "Parent's address is required."],
     trim: true,
   },
   // profilePhoto: {
