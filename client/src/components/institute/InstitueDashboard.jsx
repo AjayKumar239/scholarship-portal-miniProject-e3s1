@@ -157,8 +157,8 @@ const InstituteDashboard = () => {
   useEffect(() => {
     const filtered = applications.filter(
       (app) =>
-        (app.name?.toLowerCase() || "").includes(searchTerm.toLowerCase() || "") ||
-        (app.sid?.toLowerCase() || "").includes(searchTerm.toLowerCase() || "")
+        ((app.name?.toLowerCase() || "").includes(searchTerm.toLowerCase() || "") ||
+        (app.sid?.toLowerCase() || "").includes(searchTerm.toLowerCase() || ""))
     );
     setFilteredApplications(filtered);
   }, [searchTerm, applications]);

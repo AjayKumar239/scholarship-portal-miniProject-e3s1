@@ -74,6 +74,10 @@ const instituteSchema = new mongoose.Schema({
     type: String,
     required:true,
   },
+  status: {
+    type: String,
+    default: "waiting_for_institute_reply",
+  },
 });
 
 const Institute_APP = mongoose.model("Institute_APP", instituteSchema);
