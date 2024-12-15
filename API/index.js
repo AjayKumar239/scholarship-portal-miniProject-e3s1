@@ -119,6 +119,7 @@
         let sid = application.sid;
         let AppID = (application._id).toString();
         let insId = application.insId;
+        let status = application.status;
         // console.log(sid);
 
 
@@ -143,6 +144,7 @@
           phone,
           fatherName,
           motherName,
+          status,
         });
     
         await instituteRecord.save();
